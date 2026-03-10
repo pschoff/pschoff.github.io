@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Travels - Peter Schoffelen</title>
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <link rel="stylesheet" href="site.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A map of places Peter W. Schoffelen has traveled around the world.">
+  </head>
+
+  <body>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about me.html">About Me</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="MEANDERINGS AND DIGRESSIONS.html">Meanderings &amp; Digressions</a></li>
+        <li><a href="travel.html" class="active">Travels</a></li>
+        <li><a href="Say Hello.html">Say Hello</a></li>
+      </ul>
+    </nav>
+
+    <article>
+      <h1>Travels</h1>
+      <p class="subtitle">Places I have wandered</p>
+
+      <section>
+        <p>A map of the world showing places I have visited. Highlighted countries have write-ups — click them to read more.</p>
+
+        <!-- ============================================================
+             TRAVEL DATA — Edit this section to add your trips.
+             countryId: ISO 3166-1 numeric code (see comment below)
+             Common codes:
+               United States = 840   Canada = 124    Mexico = 484
+               United Kingdom = 826  Ireland = 372   France = 250
+               Germany = 276         Netherlands = 528 Switzerland = 756
+               Spain = 724           Portugal = 620  Italy = 380
+               Greece = 300          Croatia = 191   Austria = 040
+               Czech Republic = 203  Poland = 616
+               Japan = 392           China = 156     India = 356
+               Australia = 036       New Zealand = 554
+               Brazil = 076          Argentina = 032
+               South Africa = 710    Morocco = 504   Egypt = 818
+        ============================================================ -->
+        <script id="travel-data-config" type="application/json">
+          [
+            {
+              "countryId": "840",
+              "countryName": "United States",
+              "writeupUrl": "travel/new-england.html",
+              "date": "2018-06-15",
+              "title": "New England Adventures",
+              "description": "Hiking, sailing, and seafood along the New England coast."
+            }
+          ]
+        </script>
+        <!-- ============================================================
+             END TRAVEL DATA
+        ============================================================ -->
+
+        <div class="travel-map-legend">
+          <span class="legend-item legend-visited">Visited</span>
+          <span class="legend-item legend-unvisited">Not yet</span>
+        </div>
+
+        <div id="travel-map" aria-label="World map showing visited countries"></div>
+        <div id="map-tooltip" class="map-tooltip" role="tooltip" aria-hidden="true"></div>
+      </section>
+
+      <section>
+        <h2>Trip Write-ups</h2>
+        <p>Notes and reflections from places I have been, in chronological order.</p>
+        <ul class="travel-list" id="travel-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+      </section>
+    </article>
+
+    <footer class="site-footer">
+      <p>&copy; Peter W. Schoffelen</p>
+    </footer>
+
+    <!-- D3 and TopoJSON from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+
+    <script>
+      // Parse travel data from the config script tag
+      const travelData = JSON.parse(
+        document.getElementById('travel-data-config').textContent
+      );
+
+      // Build a lookup map: countryId (string) → trip object
+      const visitedMap = {};
+      travelData.forEach(trip => {
+        visitedMap[String(trip.countryId)] = trip;
+      });
+
+      // ── Map rendering ──────────────────────────────────────────────
+      const container = document.getElementById('travel-map');
+      const W = 900;
+      const H = 460;
+
+      const svg = d3.select('#travel-map')
+        .append('svg')
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .attr('role', 'img');
+
+      // Ocean background
+      svg.append('rect')
+        .attr('width', W)
+        .attr('height', H)
+        .attr('class', 'map-ocean');
+
+      const projection = d3.geoNaturalEarth1()
+        .scale(W / 6.3)
+        .translate([W / 2, H / 2]);
+
+      const pathGen = d3.geoPath().projection(projection);
+
+      const tooltip = document.getElementById('map-tooltip');
+
+      function showTooltip(event, trip) {
+        tooltip.innerHTML = `<strong>${trip.countryName}</strong><br>${trip.title}`;
+        tooltip.style.display = 'block';
+        moveTooltip(event);
+      }
+
+      function moveTooltip(event) {
+        const rect = container.getBoundingClientRect();
+        const x = event.clientX - rect.left + 12;
+        const y = event.clientY - rect.top - 10;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top  = y + 'px';
+      }
+
+      function hideTooltip() {
+        tooltip.style.display = 'none';
+      }
+
+      d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+        .then(world => {
+          const countries = topojson.feature(world, world.objects.countries);
+
+          svg.selectAll('.country')
+            .data(countries.features)
+            .enter()
+            .append('path')
+            .attr('class', d => {
+              const trip = visitedMap[String(d.id)];
+              return trip ? 'country visited' : 'country';
+            })
+            .attr('d', pathGen)
+            .attr('tabindex', d => visitedMap[String(d.id)] ? '0' : null)
+            .attr('aria-label', d => {
+              const trip = visitedMap[String(d.id)];
+              return trip ? `${trip.countryName}: ${trip.title}` : null;
+            })
+            .on('mouseover', (event, d) => {
+              const trip = visitedMap[String(d.id)];
+              if (trip) showTooltip(event, trip);
+            })
+            .on('mousemove', (event, d) => {
+              if (visitedMap[String(d.id)]) moveTooltip(event);
+            })
+            .on('mouseout', () => hideTooltip())
+            .on('click', (event, d) => {
+              const trip = visitedMap[String(d.id)];
+              if (trip && trip.writeupUrl) {
+                window.location.href = trip.writeupUrl;
+              }
+            })
+            .on('keydown', (event, d) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                const trip = visitedMap[String(d.id)];
+                if (trip && trip.writeupUrl) {
+                  window.location.href = trip.writeupUrl;
+                }
+              }
+            });
+
+          // Country borders
+          svg.append('path')
+            .datum(topojson.mesh(world, world.objects.countries, (a, b) => a !== b))
+            .attr('class', 'country-borders')
+            .attr('d', pathGen);
+        })
+        .catch(() => {
+          container.innerHTML = '<p style="padding:1rem;color:#888;">Map could not be loaded. Please check your internet connection.</p>';
+        });
+
+      // ── Trip list ──────────────────────────────────────────────────
+      const list = document.getElementById('travel-list');
+
+      // Sort chronologically (oldest first)
+      const sorted = [...travelData].sort((a, b) => a.date.localeCompare(b.date));
+
+      sorted.forEach(trip => {
+        const li = document.createElement('li');
+        li.className = 'travel-list-item';
+
+        const dateStr = new Date(trip.date + 'T00:00:00').toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long'
+        });
+
+        if (trip.writeupUrl) {
+          li.innerHTML = `
+            <a href="${trip.writeupUrl}" class="travel-list-link">
+              <span class="travel-list-title">${trip.title}</span>
+              <span class="travel-list-meta">${trip.countryName} &mdash; ${dateStr}</span>
+              ${trip.description ? `<span class="travel-list-desc">${trip.description}</span>` : ''}
+            </a>`;
+        } else {
+          li.innerHTML = `
+            <span class="travel-list-title">${trip.title}</span>
+            <span class="travel-list-meta">${trip.countryName} &mdash; ${dateStr}</span>
+            ${trip.description ? `<span class="travel-list-desc">${trip.description}</span>` : ''}`;
+        }
+
+        list.appendChild(li);
+      });
+
+      if (sorted.length === 0) {
+        list.innerHTML = '<li style="color:#888;font-style:italic;">No trips added yet.</li>';
+      }
+    </script>
+  </body>
+</html>
