@@ -113,7 +113,7 @@
       svg.append('rect')
         .attr('width', W)
         .attr('height', H)
-        .attr('class', 'map-ocean');
+        .style('fill', '#dceef5');
 
       const projection = d3.geoNaturalEarth1()
         .scale(W / 6.3)
@@ -145,15 +145,20 @@
         .then(world => {
           const countries = topojson.feature(world, world.objects.countries);
 
+          const COLOR_UNVISITED = '#cdc9be';
+          const COLOR_VISITED   = '#9e6b4a';
+          const COLOR_HOVER     = '#7a4f33';
+
           svg.selectAll('.country')
             .data(countries.features)
             .enter()
             .append('path')
-            .attr('class', d => {
-              const trip = visitedMap[String(d.id)];
-              return trip ? 'country visited' : 'country';
-            })
+            .attr('class', d => visitedMap[String(d.id)] ? 'country visited' : 'country')
             .attr('d', pathGen)
+            .style('fill', d => visitedMap[String(d.id)] ? COLOR_VISITED : COLOR_UNVISITED)
+            .style('stroke', '#fff')
+            .style('stroke-width', '0.5px')
+            .style('cursor', d => visitedMap[String(d.id)] ? 'pointer' : 'default')
             .attr('tabindex', d => visitedMap[String(d.id)] ? '0' : null)
             .attr('aria-label', d => {
               const trip = visitedMap[String(d.id)];
@@ -161,12 +166,19 @@
             })
             .on('mouseover', (event, d) => {
               const trip = visitedMap[String(d.id)];
-              if (trip) showTooltip(event, trip);
+              if (trip) {
+                d3.select(event.currentTarget).style('fill', COLOR_HOVER);
+                showTooltip(event, trip);
+              }
             })
             .on('mousemove', (event, d) => {
               if (visitedMap[String(d.id)]) moveTooltip(event);
             })
-            .on('mouseout', () => hideTooltip())
+            .on('mouseout', (event, d) => {
+              const trip = visitedMap[String(d.id)];
+              d3.select(event.currentTarget).style('fill', trip ? COLOR_VISITED : COLOR_UNVISITED);
+              hideTooltip();
+            })
             .on('click', (event, d) => {
               const trip = visitedMap[String(d.id)];
               if (trip && trip.writeupUrl) {
@@ -185,8 +197,10 @@
           // Country borders
           svg.append('path')
             .datum(topojson.mesh(world, world.objects.countries, (a, b) => a !== b))
-            .attr('class', 'country-borders')
-            .attr('d', pathGen);
+            .attr('d', pathGen)
+            .style('fill', 'none')
+            .style('stroke', '#fff')
+            .style('stroke-width', '0.4px');
         })
         .catch(() => {
           container.innerHTML = '<p style="padding:1rem;color:#888;">Map could not be loaded. Please check your internet connection.</p>';
