@@ -495,26 +495,6 @@ footer.site-footer .paw {
 }
 
 /* ---- About page ---- */
-.tags {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    width: 55%;
-}
-
-.tags li {
-    margin: 0;
-    font-size: 1.15rem;
-    padding: 0.25rem 0.85rem;
-    border: 1px solid #e3c8b8;
-    border-radius: 999px;
-    background: #fdf3ea;
-    color: var(--blaze-deep);
-}
-
 .facts > span {
     display: block;
     margin: 0 0 0.45rem;
@@ -599,7 +579,7 @@ figure img.portrait {
         font-size: 1.3rem;
     }
 
-    .signposts, .tags, .project-entry.with-thumb {
+    .signposts, .project-entry.with-thumb {
         width: 100%;
     }
 
