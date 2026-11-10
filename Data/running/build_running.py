@@ -25,6 +25,8 @@ for r in csv.DictReader(open(os.path.join(HERE, 'runs.csv'))):
         temp=float(r['temp_f']) if r['temp_f'] else None, tm=r['treadmill'] == '1'))
 splits = [(int(r['mile']), int(r['split_s']), float(r['avg_hr']))
           for r in csv.DictReader(open(os.path.join(HERE, 'race_2025_splits.csv')))]
+course = [(int(r['time_s']), float(r['distance_m']) / 1609.34, float(r['altitude_m']) * 3.28084)
+          for r in csv.DictReader(open(os.path.join(HERE, 'race_2025_course.csv')))]
 TODAY = runs[-1]['date']
 
 
@@ -311,10 +313,72 @@ def fig_race():
     return svg(W, H, o, 'Mile splits and heart rate from the 2025 Dallas Half Marathon')
 
 
+# ---------------------------------------------------------------- fig 6: pace and elevation along the course
+C_LOW1 = min(range(30), key=lambda i: course[i][2])            # bottom of the early drop
+C_HIGH = max(range(len(course)), key=lambda i: course[i][2])
+C_LOW2 = min(range(C_HIGH, len(course)), key=lambda i: course[i][2])
+C_END = len(course) - 1
+
+
+def leg(i0, i1):
+    return dict(pace=(course[i1][0] - course[i0][0]) / (course[i1][1] - course[i0][1]),
+                mi=course[i1][1] - course[i0][1], ft=course[i1][2] - course[i0][2])
+
+
+LEGS = [leg(C_LOW1, C_HIGH), leg(C_HIGH, C_LOW2), leg(C_LOW2, C_END)]
+
+
+def fig_course():
+    W, l, r = 720, 46, 30
+    ph, gap, eh, t, b = 190, 64, 110, 46, 44
+    H = t + ph + gap + eh + b
+    X = scale(0, 13.3, l, W - r)
+    o = []
+    cuts = [course[i][1] for i in (C_LOW1, C_HIGH, C_LOW2)]
+    for c in cuts:
+        o.append(line(X(c), t - 4, X(c), t + ph + gap + eh, FAINT, 0.7, '2 3'))
+    # pace, smoothed over roughly 0.3 mile
+    Y = scale(390, 570, t, t + ph)
+    o.append(text(l, t - 30, 'Pace', fill=INK, size=15))
+    for v in (420, 450, 480, 510, 540):
+        o.append(line(l, Y(v), X(13.3), Y(v), RULE))
+        o.append(text(l - 6, Y(v) + 4, mmss(v), 'end'))
+    pts = []
+    for i in range(1, len(course)):
+        a, z = max(0, i - 2), min(C_END, i + 1)
+        pc = (course[z][0] - course[a][0]) / (course[z][1] - course[a][1])
+        pts.append((X((course[a][1] + course[z][1]) / 2), Y(pc)))
+    o.append(path(pts, BLAZE, 1.8))
+    names = ('the long climb', 'the descent', 'the last hill')
+    spans = ((cuts[0], cuts[1]), (cuts[1], cuts[2]), (cuts[2], course[C_END][1]))
+    for (a, z), lg, nm in zip(spans, LEGS, names):
+        cx = (X(a) + X(z)) / 2
+        o.append(text(cx, t - 14, '%s/mi' % mmss(lg['pace']), 'middle', fill=INK))
+        o.append(text(cx, t - 29, nm, 'middle', 'it'))
+    # elevation
+    y0 = t + ph + gap
+    Y = scale(380, 600, y0 + eh, y0)
+    o.append(text(l, y0 - 14, 'Elevation', fill=INK, size=15))
+    o.append(path([(X(m), Y(f)) for _, m, f in course], GREY, 1.6))
+    for i, anchor, dx, dy in ((C_HIGH, 'middle', 0, -9), (C_LOW2, 'end', -8, -4)):
+        o.append(dot(X(course[i][1]), Y(course[i][2]), 3, GREY))
+        o.append(text(X(course[i][1]) + dx, Y(course[i][2]) + dy, '%.0f ft' % course[i][2], anchor, fill=INK))
+    o.append(text(X(0) + 4, Y(course[0][2]) - 9, '%.0f ft' % course[0][2]))
+    for (a, z), lg in zip(spans, LEGS):
+        o.append(text((X(a) + X(z)) / 2, y0 - 14, '%+.0f ft' % lg['ft'], 'middle', 'it'))
+    o.append(line(X(0), y0 + eh, X(13.1), y0 + eh))
+    for m in list(range(0, 14)) :
+        o.append(line(X(m), y0 + eh, X(m), y0 + eh + 4))
+        if m: o.append(text(X(m), y0 + eh + 18, str(m), 'middle'))
+    o.append(text(l, y0 + eh + 36, 'miles from the start', cls='it'))
+    return svg(W, H, o, 'Pace and elevation along the 2025 Dallas Half Marathon course')
+
+
 # ---------------------------------------------------------------- page
 first6 = st.mean(s for _, s, _ in splits[:6])
 last6 = st.mean(s for _, s, _ in splits[7:])
 V = dict(
+    f6=fig_course(), up=LEGS[0]['ft'], upmi=LEGS[0]['mi'], uppace=mmss(LEGS[0]['pace']), down=-LEGS[1]['ft'], downmi=LEGS[1]['mi'], downpace=mmss(LEGS[1]['pace']), lastft=LEGS[2]['ft'], lastpace=mmss(LEGS[2]['pace']), himi=course[C_HIGH][1],
     f1=fig_timeline(), f2=fig_cumulative(), f3=fig_shape(), f4=fig_heat(), f5=fig_race(),
     n=len(runs), total=sum(r['mi'] for r in runs),
     n25=sum(1 for r in runs if r['date'].year == 2025), n26=sum(1 for r in runs if r['date'].year == 2026),
@@ -339,5 +403,5 @@ assert '{{' not in PAGE, PAGE[PAGE.index('{{'):][:40]
 open(OUT, 'w').write(PAGE)
 print('wrote', os.path.normpath(OUT))
 for k in sorted(V):
-    if not k.startswith('f') or k in ('full25', 'first6', 'f50', 'f95'):
+    if not (k.startswith('f') and len(k) == 2) or k in ('full25', 'first6', 'f50', 'f95'):
         print(' ', k, V[k] if isinstance(V[k], str) else round(V[k], 2))
