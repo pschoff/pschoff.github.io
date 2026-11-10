@@ -13,7 +13,7 @@
   <body>
     <nav class="site-nav">
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html" class="nav-home active">Peter Schoffelen</a></li>
         <li><a href="about me.html">About Me</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="MEANDERINGS AND DIGRESSIONS.html">Meanderings &amp; Digressions</a></li>
@@ -23,25 +23,51 @@
     </nav>
 
     <article>
-      <figure class="fullwidth"><img src="img/imagequilt-chinese-calligraphy.png" alt="Chinese calligraphy image quilt"/></figure>
-
-      <h1>My Space</h1>
-      <p class="subtitle">Peter W. Schoffelen</p>
+      <header class="hello">
+        <h1>Hi, I&rsquo;m Peter.</h1>
+        <p class="subtitle">Program manager by day, trail wanderer by weekend, and full-time snack carrier for a dog named Charlie Brown.</p>
+      </header>
 
       <section>
-        <p>Hello world! I'm Peter. I work as a program manager/agile coach/scrum master. Currently I call Boston, MA home and spend my free time enjoying the many adventures one can experience in New England.</p>
+        <figure class="photo-frame">
+          <label for="mn-hero" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-hero" class="margin-toggle"/><span class="marginnote">Me and Charlie Brown near Three Finger Jack in Oregon. He is, as usual, having more fun than I am.</span>
+          <img src="img/web/hike-charlie.jpg" width="1800" height="1350" alt="Peter grinning in sunglasses on a snowy trail while his dog Charlie Brown bounds toward the camera"/>
+        </figure>
 
-        <p>This website was created as an experiment for me to learn more about web development and maybe get something close to a portfolio site out of the experimentation. The contents of this site include the following:</p>
+        <p>I work as a program manager, agile coach and scrum master, which mostly means helping teams figure out what to build next and then actually ship it. These days I call Boston home, and I spend as much free time as I can outside, chasing the adventures New England has to offer.<label for="sn-dog" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-dog" class="margin-toggle"/><span class="sidenote">Usually with a dog in tow. Usually muddy.</span></p>
 
-        <p><a href="about me.html">ABOUT ME</a> <em>- Find things like my resume here</em></p>
-        <p><a href="portfolio.html">PORTFOLIO</a> <em>- Examples of my work such as data visualizations and writing</em></p>
-        <p><a href="MEANDERINGS AND DIGRESSIONS.html">MEANDERINGS AND DIGRESSIONS</a> <em>- Something akin to a blog</em></p>
-        <p><a href="Say Hello.html">SAY HELLO</a> <em>- Email and other contact mediums</em></p>
+        <p>This site is my little corner of the internet, and a long-running excuse to tinker with web design. Pull up a chair and have a look around:</p>
+
+        <ul class="signposts">
+          <li><a href="about me.html"><span class="sp-title">About me</span><span class="sp-arrow" aria-hidden="true">&rarr;</span><span class="sp-desc">The short version, the long version (my r&eacute;sum&eacute;) and, yes, more of the dog.</span></a></li>
+          <li><a href="portfolio.html"><span class="sp-title">Portfolio</span><span class="sp-arrow" aria-hidden="true">&rarr;</span><span class="sp-desc">Data stories, including one about bison, hunters and who really pays for conservation.</span></a></li>
+          <li><a href="MEANDERINGS AND DIGRESSIONS.html"><span class="sp-title">Meanderings &amp; digressions</span><span class="sp-arrow" aria-hidden="true">&rarr;</span><span class="sp-desc">Something akin to a blog: things I&rsquo;ve read and can&rsquo;t stop thinking about.</span></a></li>
+          <li><a href="travel.html"><span class="sp-title">Travels</span><span class="sp-arrow" aria-hidden="true">&rarr;</span><span class="sp-desc">A map of the 26 countries and territories I&rsquo;ve wandered through so far.</span></a></li>
+          <li><a href="Say Hello.html"><span class="sp-title">Say hello</span><span class="sp-arrow" aria-hidden="true">&rarr;</span><span class="sp-desc">I&rsquo;m always up for a good conversation. Really.</span></a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>A few snapshots</h2>
+        <div class="snapshots">
+          <figure>
+            <img src="img/web/lake-charlie.jpg" alt="A calm lake under a big cloudy sky, with Charlie Brown swimming in the foreground" loading="lazy"/>
+            <figcaption>Charlie Brown, mid-swim. He does not believe in dry land.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/web/sketch-question.jpg" alt="Hand-drawn pencil chart sketch with the handwritten question: What do you think explains this?" loading="lazy"/>
+            <figcaption>How every data story starts for me: pen, paper and a question.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/web/bus-stop.jpg" alt="Peter sitting in a tiny red wooden shelter with a hand-painted BUSSTOP sign" loading="lazy"/>
+            <figcaption>Waiting for the bus. Still waiting.</figcaption>
+          </figure>
+        </div>
       </section>
     </article>
 
     <footer class="site-footer">
-      <p>&copy; Peter W. Schoffelen</p>
+      <p>&copy; Peter W. Schoffelen &middot; Made in Boston, supervised by Charlie Brown <span class="paw" aria-hidden="true">&#128062;</span></p>
     </footer>
   </body>
 </html>
