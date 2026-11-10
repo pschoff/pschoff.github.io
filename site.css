@@ -1,5 +1,39 @@
 /* site.css - Custom enhancements for pschoff.github.io
-   Complements tufte.css without overriding the Tufte theme */
+   Complements tufte.css: keeps the Tufte bones (ET Book, cream paper,
+   margin notes) and adds a little warmth on top. */
+
+:root {
+    --ink: #111;
+    --ink-soft: #555;
+    --ink-faint: #888;
+    --paper: #fffff8;
+    --rule: #e8e2d6;
+    --blaze: #b4462b;        /* trail-blaze orange: the one accent colour */
+    --blaze-deep: #8f3520;
+    --highlighter: #fbe1a6;  /* a swipe of yellow marker */
+}
+
+/* Warm accent on links, without losing Tufte's underline style */
+a:link {
+    background-image: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(var(--blaze), var(--blaze));
+    background-size: 0.05em 1px, 0.05em 1px, 1px 1.5px;
+    transition: color 0.15s ease;
+}
+
+a:link:hover, a:visited:hover {
+    color: var(--blaze);
+}
+
+::selection { background: var(--highlighter); }
+
+/* Highlighter swipe for a word or two */
+.hl {
+    background: linear-gradient(104deg, transparent 0.5%, var(--highlighter) 2%, var(--highlighter) 97%, transparent 99%);
+    background-size: 100% 0.55em;
+    background-position: 0 85%;
+    background-repeat: no-repeat;
+    padding: 0 0.08em;
+}
 
 /* ---- Navigation ---- */
 nav.site-nav {
@@ -36,12 +70,22 @@ nav.site-nav a {
 }
 
 nav.site-nav a:hover,
-nav.site-nav a:focus {
-    color: #555;
+nav.site-nav a:focus-visible {
+    color: var(--blaze);
 }
 
 nav.site-nav a.active {
-    border-bottom: 1px solid #111;
+    border-bottom: 2px solid var(--blaze);
+    padding-bottom: 1px;
+}
+
+nav.site-nav .nav-home {
+    font-variant: normal;
+    text-transform: none;
+    font-style: italic;
+    letter-spacing: 0;
+    font-size: 1.25rem;
+    margin-right: 0.6rem;
 }
 
 /* ---- Footer ---- */
@@ -57,6 +101,11 @@ footer.site-footer p {
     font-size: 1rem;
     margin: 0.3rem 0;
     color: #888;
+    width: auto;
+}
+
+footer.site-footer .paw {
+    color: var(--blaze);
 }
 
 /* ---- Homepage hero section ---- */
@@ -235,7 +284,7 @@ footer.site-footer p {
 .map-tooltip {
     display: none;
     position: absolute;
-    background: #fffff8;
+    background: var(--paper);
     border: 1px solid #ccc;
     padding: 0.5rem 0.75rem;
     font-family: et-book, Palatino, "Palatino Linotype", Georgia, serif;
@@ -330,6 +379,214 @@ footer.site-footer p {
     line-height: 1.5;
 }
 
+/* ---- Homepage: hello ---- */
+.hello h1 {
+    font-size: 3.6rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.hello .subtitle {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    max-width: 34rem;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+}
+
+.photo-frame img {
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(60, 40, 20, 0.08), 0 8px 24px rgba(60, 40, 20, 0.10);
+}
+
+.wave {
+    display: inline-block;
+    transform-origin: 70% 80%;
+    animation: wave 2.4s ease-in-out 0.6s 2;
+}
+
+@keyframes wave {
+    0%, 60%, 100% { transform: rotate(0deg); }
+    10%, 30% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wave { animation: none; }
+}
+
+/* Signposts: where to go next */
+.signposts {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    width: 55%;
+}
+
+.signposts li {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.signposts li:first-child {
+    border-top: 1px solid var(--rule);
+}
+
+.signposts a:link, .signposts a:visited {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 0 1rem;
+    padding: 0.9rem 0.25rem;
+    text-decoration: none;
+    background: none;
+    text-shadow: none;
+    transition: background-color 0.15s ease, padding 0.15s ease;
+}
+
+.signposts a:hover {
+    background-color: rgba(251, 225, 166, 0.35);
+    padding-left: 0.75rem;
+}
+
+.signposts .sp-title {
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    font-size: 1.45rem;
+    color: var(--ink);
+}
+
+.signposts .sp-arrow {
+    color: var(--blaze);
+    font-size: 1.3rem;
+    transition: transform 0.15s ease;
+}
+
+.signposts a:hover .sp-arrow {
+    transform: translateX(4px);
+}
+
+.signposts .sp-desc {
+    grid-column: 1 / -1;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.45;
+}
+
+/* Snapshot strip */
+.snapshots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 90%;
+    margin: 1.5rem 0 1rem;
+}
+
+.snapshots figure {
+    margin: 0;
+    max-width: none;
+}
+
+.snapshots img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(60, 40, 20, 0.08), 0 6px 16px rgba(60, 40, 20, 0.10);
+    transition: transform 0.2s ease;
+}
+
+.snapshots figure:nth-child(1) img { transform: rotate(-1.2deg); object-position: 85% 50%; }
+.snapshots figure:nth-child(3) img { transform: rotate(1deg); }
+.snapshots figure:hover img { transform: rotate(0deg) scale(1.02); }
+
+.snapshots figcaption {
+    float: none;
+    max-width: none;
+    margin-top: 0.7rem;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .snapshots img, .snapshots figure:hover img { transform: none; transition: none; }
+}
+
+/* ---- About page ---- */
+.tags {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    width: 55%;
+}
+
+.tags li {
+    margin: 0;
+    font-size: 1.15rem;
+    padding: 0.25rem 0.85rem;
+    border: 1px solid #e3c8b8;
+    border-radius: 999px;
+    background: #fdf3ea;
+    color: var(--blaze-deep);
+}
+
+.facts > span {
+    display: block;
+    margin: 0 0 0.45rem;
+    line-height: 1.4;
+}
+
+figure img.portrait {
+    max-width: 22rem;
+    width: 100%;
+}
+
+.facts b {
+    font-weight: normal;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    color: var(--blaze-deep);
+}
+
+/* ---- Portfolio thumbnails ---- */
+.project-entry.with-thumb {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0 1.5rem;
+    align-items: start;
+    width: 55%;
+}
+
+.project-entry .thumb img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(60, 40, 20, 0.08), 0 4px 12px rgba(60, 40, 20, 0.10);
+}
+
+.project-entry.with-thumb p,
+.project-entry.with-thumb h3 {
+    width: auto;
+}
+
+.project-entry .thumb:link {
+    background: none;
+    text-shadow: none;
+}
+
 /* ---- Responsive adjustments ---- */
 @media (max-width: 760px) {
     nav.site-nav ul {
@@ -359,4 +616,40 @@ footer.site-footer p {
     .travel-list-link:hover {
         padding-left: 0;
     }
+
+    .hello h1 {
+        font-size: 2.6rem;
+    }
+
+    .hello .subtitle {
+        font-size: 1.3rem;
+    }
+
+    .signposts, .tags, .project-entry.with-thumb {
+        width: 100%;
+    }
+
+    .signposts a:hover {
+        padding-left: 0.25rem;
+    }
+
+    .snapshots {
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
+        gap: 1rem;
+    }
+
+    .snapshots figure:nth-child(3) {
+        display: none;
+    }
+
+    .project-entry.with-thumb {
+        grid-template-columns: 5.5rem 1fr;
+        gap: 0 1rem;
+    }
+}
+
+/* Keep intrinsic width/height attributes from distorting images */
+article img {
+    height: auto;
 }
