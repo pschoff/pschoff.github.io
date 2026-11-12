@@ -13,6 +13,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', '..', 'books.html')
 UPDATED = dt.date(2026, 11, 3)            # last edit to the list
 ACCENT_AUTHOR = 'Peter Heller'            # the one author in every year
+CURRENT = dict(title='Regenesis', author='George Church')   # being read now, not yet counted
 INK, SOFT, FAINT, RULE, BLAZE, GREY = '#111', '#555', '#888', '#e8e2d6', '#b4462b', '#8a857a'
 PAPER, TINT, EDGE = '#fffff8', '#f4eee3', '#cfc6b4'
 
@@ -74,7 +75,7 @@ def shelved(year):
 
 
 def fig_shelf():
-    W, SW, SH, X0, PITCH = 1000, 30, 200, 92, 252
+    W, SW, SH, X0, PITCH = 1040, 30, 200, 92, 252
     o = []
     for i, y in enumerate(YEARS):
         top = 8 + i * PITCH
@@ -103,6 +104,13 @@ def fig_shelf():
                 o.append(text((gx0 + x) / 2, top + SH + 18, '%s %d' % (surname(author), len(bs)),
                               anchor='middle', fill=BLAZE if hot else SOFT))
             x += 12
+        if y == UPDATED.year:                  # the book in progress: an outline, not yet a spine
+            o.append('<g><title>%s, %s (reading now)</title><rect x="%.1f" y="%.1f" width="%d" height="%d" fill="none" '
+                     'stroke="%s" stroke-width="1" stroke-dasharray="3 3"/>' % (
+                         esc(CURRENT['title']), esc(CURRENT['author']), x, top, SW, SH - 1, FAINT))
+            o.append(text(x + SW / 2 - 4, top + 9, CURRENT['title'], size=11.5, rot=90))
+            o.append(text(x + SW / 2 - 4, top + SH - 9, surname(CURRENT['author']), anchor='end', cls='it', size=11.5, rot=90))
+            o.append('</g>')
         o.append(line(X0 - 6, top + SH + 0.5, W, top + SH + 0.5, FAINT, 1))
     return svg(W, 8 + len(YEARS) * PITCH - 22, o,
                'Every book read from 2024 to 2026, drawn as a spine on a shelf for each year')
@@ -197,6 +205,7 @@ V = dict(
     recentpct=100 * sum(1 for b in dated if b['pub'] >= 2012) / len(dated),
     medage=st.median(b['year'] - b['pub'] for b in dated),
     undated=N - len(dated),
+    cur_title=CURRENT['title'], cur_author=CURRENT['author'],
 )
 for y in YEARS:
     V['n%d' % (y % 100)] = len(per_year[y])
