@@ -3,7 +3,8 @@
 
     python3 Data/books/build_books.py
 
-Input:   books.csv (one row per book; pub_year is blank where unknown)
+Input:   books.csv (one row per book; pages and pub_year from Open Library and
+         publisher listings, blank where unknown)
 Output:  ../../books.html (charts are inline SVG, no JavaScript)
 """
 import csv, datetime as dt, html, os, re, statistics as st
@@ -13,7 +14,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', '..', 'books.html')
 UPDATED = dt.date(2026, 11, 3)            # last edit to the list
 ACCENT_AUTHOR = 'Peter Heller'            # the one author in every year
-CURRENT = dict(title='Regenesis', author='George Church')   # being read now, not yet counted
+CURRENT = dict(title='Regenesis', author='George Church', pages=294)   # being read now, not yet counted
 INK, SOFT, FAINT, RULE, BLAZE, GREY = '#111', '#555', '#888', '#e8e2d6', '#b4462b', '#8a857a'
 PAPER, TINT, EDGE = '#fffff8', '#f4eee3', '#cfc6b4'
 
@@ -21,7 +22,8 @@ books = []
 for r in csv.DictReader(open(os.path.join(HERE, 'books.csv'))):
     books.append(dict(year=int(r['year_read']), title=r['title'], author=r['author'],
                       series=r['series'], genre=r['genre'],
-                      pub=int(r['pub_year']) if r['pub_year'] else None))
+                      pub=int(r['pub_year']) if r['pub_year'] else None,
+                      pages=int(r['pages']) if r['pages'] else None))
 YEARS = sorted({b['year'] for b in books})
 N = len(books)
 
@@ -56,8 +58,9 @@ def line(x1, y1, x2, y2, stroke=FAINT, w=1.0):
 
 
 def tip(b):
-    return '<title>%s, %s%s</title>' % (esc(b['title']), esc(b['author']),
-                                        ' (%d)' % b['pub'] if b['pub'] else '')
+    return '<title>%s, %s%s%s</title>' % (esc(b['title']), esc(b['author']),
+                                          ' (%d)' % b['pub'] if b['pub'] else '',
+                                          ', %d pages' % b['pages'] if b['pages'] else '')
 
 
 # ---------------------------------------------------------------- figure 1: the shelf
@@ -75,15 +78,38 @@ def shelved(year):
 
 
 def fig_shelf():
-    W, SW, SH, X0, PITCH = 1040, 30, 200, 92, 252
+    W, SH, X0, PITCH, GAP = 1200, 215, 100, 267, 12
+    MEDIAN = st.median(b['pages'] for b in books if b['pages'])
+    pages = lambda b: b['pages'] or MEDIAN            # unknown length: draw it as a typical book
+    widest = max(sum(pages(b) for b in books if b['year'] == y) + (CURRENT['pages'] if y == UPDATED.year else 0)
+                 for y in YEARS)
+    most_groups = max(len(shelved(y)) + (y == UPDATED.year) for y in YEARS)
+    K = (W - X0 - GAP * (most_groups - 1) - 12) / widest      # pixels per page
+
+    def spine(o, x, top, b, hot=False, single=False, ghost=False):
+        w = pages(b) * K
+        size = 11.5 if w >= 15 else 9.5
+        tx = x + w / 2 - size * 0.33
+        o.append('<g>%s<rect x="%.1f" y="%.1f" width="%.1f" height="%d" fill="%s" stroke="%s" stroke-width="1"%s/>' % (
+            '<title>%s, %s, %d pages (reading now)</title>' % (esc(b['title']), esc(b['author']), b['pages']) if ghost else tip(b),
+            x, top, w, SH - ghost, 'none' if ghost else BLAZE if hot else TINT,
+            FAINT if ghost else BLAZE if hot else EDGE, ' stroke-dasharray="3 3"' if ghost else ''))
+        o.append(text(tx, top + 9, b['title'], fill=PAPER if hot else None if ghost else INK, size=size, rot=90))
+        if single:
+            o.append(text(tx, top + SH - 9, surname(b['author']), anchor='end',
+                          cls='' if hot else 'it', fill=PAPER if hot else None, size=size, rot=90))
+        o.append('</g>')
+        return x + w
+
     o = []
     for i, y in enumerate(YEARS):
         top = 8 + i * PITCH
-        n = sum(1 for b in books if b['year'] == y)
+        mine = [b for b in books if b['year'] == y]
         o.append(text(0, top + 16, str(y), fill=INK, size=17))
-        o.append(text(0, top + 36, '%d books' % n))
+        o.append(text(0, top + 36, '%d books' % len(mine)))
+        o.append(text(0, top + 53, '{:,} pages'.format(sum(b['pages'] or 0 for b in mine))))
         if y == UPDATED.year:
-            o.append(text(0, top + 53, 'so far', cls='it'))
+            o.append(text(0, top + 70, 'so far', cls='it'))
         x = X0
         for author, bs in shelved(y):
             gx0, prev = x, None
@@ -92,28 +118,16 @@ def fig_shelf():
                 if prev is not None and b['series'] != prev:
                     x += 5
                 prev = b['series']
-                o.append('<g>%s<rect x="%.1f" y="%.1f" width="%d" height="%d" fill="%s" stroke="%s" stroke-width="1"/>' % (
-                    tip(b), x, top, SW, SH, BLAZE if hot else TINT, BLAZE if hot else EDGE))
-                o.append(text(x + SW / 2 - 4, top + 9, b['title'], fill=PAPER if hot else INK, size=11.5, rot=90))
-                if len(bs) == 1:
-                    o.append(text(x + SW / 2 - 4, top + SH - 9, surname(author), anchor='end',
-                                  cls='' if hot else 'it', fill=PAPER if hot else None, size=11.5, rot=90))
-                o.append('</g>')
-                x += SW
+                x = spine(o, x, top, b, hot, single=len(bs) == 1)
             if len(bs) > 1:
                 o.append(text((gx0 + x) / 2, top + SH + 18, '%s %d' % (surname(author), len(bs)),
                               anchor='middle', fill=BLAZE if hot else SOFT))
-            x += 12
+            x += GAP
         if y == UPDATED.year:                  # the book in progress: an outline, not yet a spine
-            o.append('<g><title>%s, %s (reading now)</title><rect x="%.1f" y="%.1f" width="%d" height="%d" fill="none" '
-                     'stroke="%s" stroke-width="1" stroke-dasharray="3 3"/>' % (
-                         esc(CURRENT['title']), esc(CURRENT['author']), x, top, SW, SH - 1, FAINT))
-            o.append(text(x + SW / 2 - 4, top + 9, CURRENT['title'], size=11.5, rot=90))
-            o.append(text(x + SW / 2 - 4, top + SH - 9, surname(CURRENT['author']), anchor='end', cls='it', size=11.5, rot=90))
-            o.append('</g>')
+            spine(o, x, top, CURRENT, single=True, ghost=True)
         o.append(line(X0 - 6, top + SH + 0.5, W, top + SH + 0.5, FAINT, 1))
     return svg(W, 8 + len(YEARS) * PITCH - 22, o,
-               'Every book read from 2024 to 2026, drawn as a spine on a shelf for each year')
+               'Every book read from 2024 to 2026, drawn as a spine as thick as its page count, on a shelf for each year')
 
 
 # ---------------------------------------------------------------- figure 2: genre slopegraph
@@ -183,6 +197,11 @@ per_year = {y: [b for b in books if b['year'] == y] for y in YEARS}
 by_author = Counter(b['author'] for b in books)
 runs = sum(n for (y, s), n in Counter((b['year'], b['series']) for b in books if b['series']).items() if n > 1)
 big = [a for a, n in by_author.most_common() if n >= 3]
+apages = Counter()
+for b in books:
+    apages[b['author']] += b['pages'] or 0
+PAGES = sum(apages.values())
+top_author = by_author.most_common(1)[0][0]
 rows = []
 for a in big:
     cells = []
@@ -190,7 +209,8 @@ for a in big:
         n = sum(1 for b in per_year[y] if b['author'] == a)
         cells.append('<td>%d</td>' % n if n else '<td class="muted">&middot;</td>')
     hot = ' class="hi"' if a == ACCENT_AUTHOR else ''
-    rows.append('<tr><td%s>%s</td>%s<td%s>%d</td></tr>' % (hot, esc(a), ''.join(cells), hot, by_author[a]))
+    rows.append('<tr><td%s>%s</td>%s<td%s>%d</td><td%s>%s</td></tr>' % (
+        hot, esc(a), ''.join(cells), hot, by_author[a], hot, '{:,}'.format(apages[a])))
 last = UPDATED.year
 V = dict(
     f1=fig_shelf(), f2=fig_genre(), f3=fig_pub(),
@@ -204,13 +224,22 @@ V = dict(
     medpub=st.median(b['pub'] for b in dated),
     recentpct=100 * sum(1 for b in dated if b['pub'] >= 2012) / len(dated),
     medage=st.median(b['year'] - b['pub'] for b in dated),
-    undated=N - len(dated),
+    undated_note=' %d books are left off because I don&rsquo;t have a year for them.' % (N - len(dated)) if N > len(dated) else '',
+    pages_total='{:,}'.format(PAGES), top_pages='{:,}'.format(apages[top_author]), top_pct=100 * apages[top_author] / PAGES,
+    longest=max(books, key=lambda b: b['pages'] or 0), shortest=min(books, key=lambda b: b['pages'] or 9e9),
     cur_title=CURRENT['title'], cur_author=CURRENT['author'],
 )
 for y in YEARS:
     V['n%d' % (y % 100)] = len(per_year[y])
     V['a%d' % (y % 100)] = len({b['author'] for b in per_year[y]})
     V['f%d' % (y % 100)] = gcount[GENRES[0]][YEARS.index(y)]
+    pg = sum(b['pages'] or 0 for b in per_year[y])
+    days = UPDATED.timetuple().tm_yday if y == UPDATED.year else (dt.date(y, 12, 31) - dt.date(y - 1, 12, 31)).days
+    V['p%d' % (y % 100)] = '{:,}'.format(pg)
+    V['d%d' % (y % 100)] = pg / days
+for k in ('longest', 'shortest'):
+    V[k + '_title'], V[k + '_pages'] = esc(V[k]['title']), V[k]['pages']
+    del V[k]
 V['th_years'] = ''.join('<th>%d</th>' % y for y in YEARS)
 
 

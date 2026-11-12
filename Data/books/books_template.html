@@ -51,7 +51,7 @@
       <section>
         <p>As a kid I read constantly, for no better reason than wanting to know what happened next. Somewhere along the way that stopped. Everything I read was for school or for work, and reading turned into homework. In the evenings I turned on the TV instead.</p>
 
-        <p>So I decided I wanted to read for fun again, and to spend less of my evenings looking at a screen. The list I keep of what I finish starts in 2024.<label for="sn-source" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-source" class="margin-toggle"/><span class="sidenote">It is a notes file, not a sophisticated system: {{N}} books by {{nauth}} authors, from January 2024 to {{updated}}. There are no dates, ratings or page counts, only titles under a year, so a 900-page fantasy counts the same as a slim paperback.</span> I wanted to see what coming back to reading looks like.</p>
+        <p>So I decided I wanted to read for fun again, and to spend less of my evenings looking at a screen. The list I keep of what I finish starts in 2024.<label for="sn-source" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-source" class="margin-toggle"/><span class="sidenote">It is a notes file, not a sophisticated system: {{N}} books by {{nauth}} authors, from January 2024 to {{updated}}. It has no dates or ratings, only titles under a year. I looked up the page counts afterwards, and they vary a little by edition.</span> I wanted to see what coming back to reading looks like.</p>
       </section>
 
       <section>
@@ -61,9 +61,11 @@
           {{f1}}
         </figure>
 
-        <p><label for="mn-shelf" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-shelf" class="margin-toggle"/><span class="marginnote">Every book I finished, one spine each, shelved by year. Books by the same author stand together, largest group first, and a small gap separates one series from the next. Peter Heller is in orange. The dashed spine is the book I&rsquo;m reading now.</span>It looks like a habit coming back: {{n24}} books in 2024, {{n25}} in 2025, and {{n26}} so far this year, which works out to a book every {{pace:.0f}} days. These days I rarely turn on the TV during the week. I relax with a book instead.</p>
+        <p><label for="mn-shelf" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-shelf" class="margin-toggle"/><span class="marginnote">Every book I finished, one spine each, as thick as its page count, shelved by year. Books by the same author stand together, largest group first, and a small gap separates one series from the next. Peter Heller is in orange. The dashed spine is the book I&rsquo;m reading now.</span>It looks like a habit coming back: {{n24}} books in 2024, {{n25}} in 2025, and {{n26}} so far this year, which works out to a book every {{pace:.0f}} days.</p>
 
-        <p>The count is only half of it. Look at 2025. I nearly doubled my reading that year, and I did it with {{a25}} authors. Sarah J. Maas alone accounts for ten spines.</p>
+        <p>In pages the change is bigger: {{p24}}, then {{p25}}, then {{p26}} with the year not over. That is {{d24:.0f}} pages a day in 2024 and {{d26:.0f}} a day now. These days I rarely turn on the TV during the week. I relax with a book instead.</p>
+
+        <p>The count is only half of it. Look at 2025. I nearly doubled my books that year and nearly tripled my pages, and I did it with {{a25}} authors. Sarah J. Maas alone accounts for ten spines and {{top_pages}} pages, {{top_pct:.0f}} percent of everything on these shelves.</p>
       </section>
 
       <section>
@@ -75,7 +77,7 @@
 
         <table class="plain">
           <caption>Authors I read three or more times</caption>
-          <thead><tr><th></th>{{th_years}}<th>Books</th></tr></thead>
+          <thead><tr><th></th>{{th_years}}<th>Books</th><th>Pages</th></tr></thead>
           <tbody>
             {{author_rows}}
           </tbody>
@@ -103,7 +105,7 @@
         <h2>Almost everything is new</h2>
 
         <figure class="chart-fig">
-          <label for="mn-pub" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-pub" class="margin-toggle"/><span class="marginnote">One dot per book, placed by the year it was first published. Hover over a dot for the title. {{undated}} books are left off because I don&rsquo;t have a year for them.</span>
+          <label for="mn-pub" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-pub" class="margin-toggle"/><span class="marginnote">One dot per book, placed by the year it was first published. Hover over a dot for the title.{{undated_note}}</span>
           {{f3}}
         </figure>
 
@@ -123,7 +125,7 @@
       </section>
 
       <section>
-        <p class="project-meta">Data from my reading list, last updated {{updated}}. The list has no publication years; those were added afterwards. Charts are hand-built SVG; the data and the script that draws them are in <a href="https://github.com/pschoff/pschoff.github.io/tree/master/Data/books">Data/books</a>.</p>
+        <p class="project-meta">Data from my reading list, last updated {{updated}}. Page counts and publication years are not in the list; they come from Open Library and publisher listings, and vary by edition. Charts are hand-built SVG; the data and the script that draws them are in <a href="https://github.com/pschoff/pschoff.github.io/tree/master/Data/books">Data/books</a>.</p>
       </section>
     </article>
 

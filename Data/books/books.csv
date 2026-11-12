@@ -1,55 +1,55 @@
-year_read,title,author,series,genre,pub_year
-2024,The Last Ranger,Peter Heller,,Literary,2023
-2024,The Painter,Peter Heller,,Literary,2014
-2024,Titanium Noir,Nick Harkaway,,Fantasy & sci-fi,2023
-2024,Untethered Sky,Fonda Lee,,Fantasy & sci-fi,2023
-2024,Between Two Fires,Christopher Buehlman,,Fantasy & sci-fi,2012
-2024,Jade City,Fonda Lee,Green Bone Saga,Fantasy & sci-fi,2017
-2024,Jade War,Fonda Lee,Green Bone Saga,Fantasy & sci-fi,2019
-2024,Jade Legacy,Fonda Lee,Green Bone Saga,Fantasy & sci-fi,2021
-2024,The Comfort Crisis,Michael Easter,,Nonfiction,2021
-2024,Mating in Captivity,Esther Perel,,Nonfiction,2006
-2025,Throne of Glass,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2012
-2025,Crown of Midnight,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2013
-2025,Heir of Fire,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2014
-2025,Queen of Shadows,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2015
-2025,Empire of Storms,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2016
-2025,Tower of Dawn,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2017
-2025,Kingdom of Ash,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2018
-2025,House of Earth and Blood,Sarah J. Maas,Crescent City,Fantasy & sci-fi,2020
-2025,House of Sky and Breath,Sarah J. Maas,Crescent City,Fantasy & sci-fi,2022
-2025,House of Flame and Shadow,Sarah J. Maas,Crescent City,Fantasy & sci-fi,2024
-2025,Fourth Wing,Rebecca Yarros,Empyrean,Fantasy & sci-fi,2023
-2025,Iron Flame,Rebecca Yarros,Empyrean,Fantasy & sci-fi,2023
-2025,Onyx Storm,Rebecca Yarros,Empyrean,Fantasy & sci-fi,2025
-2025,Shadow and Bone,Leigh Bardugo,Shadow and Bone,Fantasy & sci-fi,2012
-2025,Siege and Storm,Leigh Bardugo,Shadow and Bone,Fantasy & sci-fi,2013
-2025,Ruin and Rising,Leigh Bardugo,Shadow and Bone,Fantasy & sci-fi,2014
-2025,Six of Crows,Leigh Bardugo,Six of Crows,Fantasy & sci-fi,2015
-2025,Crooked Kingdom,Leigh Bardugo,Six of Crows,Fantasy & sci-fi,2016
-2025,The River,Peter Heller,,Literary,2019
-2026,The Poppy War,R.F. Kuang,The Poppy War,Fantasy & sci-fi,2018
-2026,The Dragon Republic,R.F. Kuang,The Poppy War,Fantasy & sci-fi,2019
-2026,The Burning God,R.F. Kuang,The Poppy War,Fantasy & sci-fi,2020
-2026,Dungeon Crawler Carl,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2020
-2026,The Dungeon Anarchist's Cookbook,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2021
-2026,Carl's Doomsday Scenario,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2021
-2026,The Gate of the Feral Gods,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2021
-2026,The Butcher's Masquerade,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2022
-2026,The Eye of the Bedlam Bride,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2023
-2026,This Inevitable Ruin,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2024
-2026,The Perfect Scoundrel,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,
-2026,Shadow of the Gods,John Gwynne,,Fantasy & sci-fi,2021
-2026,A Wizard of Earthsea,Ursula K. Le Guin,,Fantasy & sci-fi,1968
-2026,The Bright Sword,Lev Grossman,,Fantasy & sci-fi,2024
-2026,Savage Son,Jack Carr,Terminal List,Thriller,2020
-2026,True Believer,Jack Carr,Terminal List,Thriller,2019
-2026,The Terminal List,Jack Carr,Terminal List,Thriller,2018
-2026,Foreign Agent,Brad Thor,Scot Harvath,Thriller,2016
-2026,Path of the Assassin,Brad Thor,Scot Harvath,Thriller,2003
-2026,Backlash,Brad Thor,Scot Harvath,Thriller,2019
-2026,Use of Force,Brad Thor,Scot Harvath,Thriller,2017
-2026,The Honjin Murders,Seishi Yokomizo,,Mystery,1946
-2026,Threshing Day,Rebecca Yarros,,Literary,
-2026,The Guide,Peter Heller,,Literary,2021
-2026,The Mom Test,Rob Fitzpatrick,,Nonfiction,2013
+year_read,title,author,series,genre,pub_year,pages
+2024,The Last Ranger,Peter Heller,,Literary,2023,304
+2024,The Painter,Peter Heller,,Literary,2014,397
+2024,Titanium Noir,Nick Harkaway,,Fantasy & sci-fi,2023,256
+2024,Untethered Sky,Fonda Lee,,Fantasy & sci-fi,2023,160
+2024,Between Two Fires,Christopher Buehlman,,Fantasy & sci-fi,2012,456
+2024,Jade City,Fonda Lee,Green Bone Saga,Fantasy & sci-fi,2017,512
+2024,Jade War,Fonda Lee,Green Bone Saga,Fantasy & sci-fi,2019,616
+2024,Jade Legacy,Fonda Lee,Green Bone Saga,Fantasy & sci-fi,2021,688
+2024,The Comfort Crisis,Michael Easter,,Nonfiction,2021,304
+2024,Mating in Captivity,Esther Perel,,Nonfiction,2006,272
+2025,Throne of Glass,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2012,432
+2025,Crown of Midnight,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2013,448
+2025,Heir of Fire,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2014,576
+2025,Queen of Shadows,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2015,672
+2025,Empire of Storms,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2016,704
+2025,Tower of Dawn,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2017,680
+2025,Kingdom of Ash,Sarah J. Maas,Throne of Glass,Fantasy & sci-fi,2018,987
+2025,House of Earth and Blood,Sarah J. Maas,Crescent City,Fantasy & sci-fi,2020,805
+2025,House of Sky and Breath,Sarah J. Maas,Crescent City,Fantasy & sci-fi,2022,816
+2025,House of Flame and Shadow,Sarah J. Maas,Crescent City,Fantasy & sci-fi,2024,848
+2025,Fourth Wing,Rebecca Yarros,Empyrean,Fantasy & sci-fi,2023,522
+2025,Iron Flame,Rebecca Yarros,Empyrean,Fantasy & sci-fi,2023,640
+2025,Onyx Storm,Rebecca Yarros,Empyrean,Fantasy & sci-fi,2025,544
+2025,Shadow and Bone,Leigh Bardugo,Shadow and Bone,Fantasy & sci-fi,2012,352
+2025,Siege and Storm,Leigh Bardugo,Shadow and Bone,Fantasy & sci-fi,2013,431
+2025,Ruin and Rising,Leigh Bardugo,Shadow and Bone,Fantasy & sci-fi,2014,427
+2025,Six of Crows,Leigh Bardugo,Six of Crows,Fantasy & sci-fi,2015,512
+2025,Crooked Kingdom,Leigh Bardugo,Six of Crows,Fantasy & sci-fi,2016,584
+2025,The River,Peter Heller,,Literary,2019,272
+2026,The Poppy War,R.F. Kuang,The Poppy War,Fantasy & sci-fi,2018,522
+2026,The Dragon Republic,R.F. Kuang,The Poppy War,Fantasy & sci-fi,2019,624
+2026,The Burning God,R.F. Kuang,The Poppy War,Fantasy & sci-fi,2020,520
+2026,Dungeon Crawler Carl,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2020,465
+2026,The Dungeon Anarchist's Cookbook,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2021,544
+2026,Carl's Doomsday Scenario,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2021,384
+2026,The Gate of the Feral Gods,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2021,600
+2026,The Butcher's Masquerade,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2022,720
+2026,The Eye of the Bedlam Bride,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2023,832
+2026,This Inevitable Ruin,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2024,880
+2026,The Perfect Scoundrel,Matt Dinniman,Dungeon Crawler Carl,Fantasy & sci-fi,2026,704
+2026,Shadow of the Gods,John Gwynne,,Fantasy & sci-fi,2021,496
+2026,A Wizard of Earthsea,Ursula K. Le Guin,,Fantasy & sci-fi,1968,205
+2026,The Bright Sword,Lev Grossman,,Fantasy & sci-fi,2024,688
+2026,Savage Son,Jack Carr,Terminal List,Thriller,2020,432
+2026,True Believer,Jack Carr,Terminal List,Thriller,2019,496
+2026,The Terminal List,Jack Carr,Terminal List,Thriller,2018,464
+2026,Foreign Agent,Brad Thor,Scot Harvath,Thriller,2016,352
+2026,Path of the Assassin,Brad Thor,Scot Harvath,Thriller,2003,442
+2026,Backlash,Brad Thor,Scot Harvath,Thriller,2019,384
+2026,Use of Force,Brad Thor,Scot Harvath,Thriller,2017,480
+2026,The Honjin Murders,Seishi Yokomizo,,Mystery,1946,206
+2026,Threshing Day,Rebecca Yarros,,Literary,2026,254
+2026,The Guide,Peter Heller,,Literary,2021,272
+2026,The Mom Test,Rob Fitzpatrick,,Nonfiction,2013,135
