@@ -15,6 +15,8 @@
       svg.chart text.it { font-style: italic; fill: #888; }
       svg.chart circle { cursor: default; }
       figure.chart-fig { margin-top: 2rem; margin-bottom: 2.4rem; }
+      figure.photo-fig { margin-top: 2rem; margin-bottom: 2.4rem; }
+      figure.photo-fig img { display: block; width: 70%; height: auto; }
       table.plain { border-collapse: collapse; font-size: 1.25rem; margin: 1.6rem 0 2.2rem; width: 55%; font-variant-numeric: tabular-nums lining-nums; }
       table.plain caption { caption-side: top; text-align: left; font-style: italic; color: #555; padding-bottom: 0.5rem; }
       table.plain th { font-weight: 400; font-style: italic; color: #555; text-align: right; border-bottom: 1px solid #111; padding: 0.25rem 0 0.25rem 1.2rem; vertical-align: bottom; }
@@ -24,6 +26,7 @@
       table.plain tr:last-child td { border-bottom: none; border-top: 1px solid #111; }
       @media (max-width: 760px) {
         table.plain { width: 100%; font-size: 0.85rem; }
+        figure.photo-fig img { width: 100%; }
         table.plain th, table.plain td { padding-left: 0.4rem; }
         table.plain th { white-space: normal; }
         figure.chart-fig { overflow-x: auto; }
@@ -76,6 +79,11 @@
         </figure>
 
         <p>From the first step of my first leg to the last step of my third, 18 hours 44 minutes went by. I was running for <strong>2 hours 6 minutes</strong> of it, which is 11 percent. The other 16 hours 38 minutes happened in a van, and the watch has nothing to say about them.</p>
+
+        <figure class="photo-fig">
+          <label for="mn-photo" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-photo" class="margin-toggle"/><span class="marginnote">Hood to Coast, August 2019. The watch has nothing from the waiting. My camera roll has this.</span>
+          <img src="img/IMG_20190827_070600_417.jpg" alt="Peter sitting in a small roadside shelter with a hand-painted sign reading BUSSTOP, chin on his hand, waiting"/>
+        </figure>
 
         <p>It does know what the light was doing. The first leg started 20 minutes before sunset and finished at 8:27 pm, in the dusk. The second started more than an hour before sunrise. Only the third was run in full daylight, after a second wait of 7 hours 50 minutes.</p>
       </section>
