@@ -5,9 +5,9 @@
     <title>Meanderings and Digressions - Peter Schoffelen</title>
     <link rel="stylesheet" href="tufte.css"/>
     <link rel="stylesheet" href="latex.css"/>
-    <link rel="stylesheet" href="site.css?v=3"/>
+    <link rel="stylesheet" href="site.css?v=4"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Writings, readings, and ruminations by Peter W. Schoffelen.">
+    <meta name="description" content="A blog of data stories, startup writing and school work by Peter W. Schoffelen.">
   </head>
 
   <body>
@@ -15,7 +15,6 @@
       <ul>
         <li><a href="index.html" class="nav-home">Peter Schoffelen</a></li>
         <li><a href="about me.html">About Me</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="MEANDERINGS AND DIGRESSIONS.html" class="active">Meanderings &amp; Digressions</a></li>
         <li><a href="travel.html">Travels</a></li>
         <li><a href="Say Hello.html">Say Hello</a></li>
@@ -27,12 +26,94 @@
       <p class="subtitle">The ponderings and ruminations of a troubled mind</p>
 
       <section>
-        <h2>Readings on Entrepreneurship</h2>
-        <ul class="reading-list">
-          <li><a href="https://www.amazon.com/Science-Growth-Facebook-Friendster-Startups/dp/1250074290">The Science of Growth</a>, 2016</li>
-          <li><a href="https://medium.com/startup-grind/heres-why-facebook-beat-friendster-intro-to-the-science-of-growth-f03c7ce224eb">Google Startup Grind: Here's Why Facebook Beat Friendster</a>, 2016</li>
-          <li><a href="https://www.startupgrind.com/blog/fundraising-is-your-competitive-advantage/">Google Startup Grind: Fundraising is Your Competitive Advantage</a>, 2016</li>
-          <li><a href="https://www.startupgrind.com/blog/the-special-forces-survival-guide-to-founding-a-startup/">Google Startup Grind: The Special Forces Survival Guide to Founding a Startup</a>, 2016</li>
+        <p>Something akin to a blog. Mostly I write when a question won&rsquo;t leave me alone, and the answer usually ends up as a chart. Newest first; pick a category to narrow it down.</p>
+      </section>
+
+      <section class="blog">
+        <input type="radio" name="cat" id="cat-all" class="cat-radio" checked/>
+        <input type="radio" name="cat" id="cat-data" class="cat-radio"/>
+        <input type="radio" name="cat" id="cat-startups" class="cat-radio"/>
+        <input type="radio" name="cat" id="cat-school" class="cat-radio"/>
+        <div class="cat-filter" role="group" aria-label="Filter posts by category">
+          <label for="cat-all">Everything <span class="cat-n">9</span></label>
+          <label for="cat-data">Data stories <span class="cat-n">3</span></label>
+          <label for="cat-startups">Startups <span class="cat-n">4</span></label>
+          <label for="cat-school">School work <span class="cat-n">2</span></label>
+        </div>
+
+        <ul class="post-list">
+          <li class="post cat-data">
+            <time datetime="2026-11">November 2026</time>
+            <div>
+              <h3><a href="books.html">Reading for Fun Again</a></h3>
+              <p>Three years of trading the television for a book: 54 books by 18 authors, and the discovery that I didn&rsquo;t quit bingeing, I just moved it.</p>
+              <p class="post-cat">Data stories</p>
+            </div>
+          </li>
+          <li class="post cat-data">
+            <time datetime="2026-11">November 2026</time>
+            <div>
+              <h3><a href="running.html">Same Miles, Different Shape</a></h3>
+              <p>Two build-ups to the Dallas Half Marathon, a year apart, compared run by run from my Strava log.</p>
+              <p class="post-cat">Data stories</p>
+            </div>
+          </li>
+          <li class="post cat-data">
+            <time datetime="2020-08">August 2020</time>
+            <div>
+              <h3><a href="conservation.html">The Sinister Source of Our Conservation Funding</a></h3>
+              <p>Fewer Americans hunt every year, yet the hunting tax that pays for wildlife conservation has tripled. On bison, gun sales and who really pays for the trail.</p>
+              <p class="post-cat">Data stories</p>
+            </div>
+          </li>
+          <li class="post cat-school">
+            <time datetime="2020-08">August 2020</time>
+            <div>
+              <h3><a href="Final_Writeup.html">How the Conservation Story Got Made</a></h3>
+              <p>The process notes behind the piece above: pencil sketches, a mood board, personas, and what two rounds of user research changed.</p>
+              <p class="post-cat">School work</p>
+            </div>
+          </li>
+          <li class="post cat-school">
+            <time datetime="2020-07">July 2020</time>
+            <div>
+              <h3><a href="Story Telling With Data Class.HTML">Government Debt, Three Ways</a></h3>
+              <p>Class exercises from Storytelling with Data at Carnegie Mellon: one OECD dataset drawn as a bar chart, a grid of sparklines and a treemap.</p>
+              <p class="post-cat">School work</p>
+            </div>
+          </li>
+          <li class="post cat-startups">
+            <time datetime="2016">2016</time>
+            <div>
+              <h3><a href="https://medium.com/startup-grind/heres-why-facebook-beat-friendster-intro-to-the-science-of-growth-f03c7ce224eb">Here&rsquo;s Why Facebook Beat Friendster</a> <span class="ext" aria-label="external link">&#8599;</span></h3>
+              <p>An introduction to the science of growth, on Startup Grind.</p>
+              <p class="post-cat">Startups</p>
+            </div>
+          </li>
+          <li class="post cat-startups">
+            <time datetime="2016">2016</time>
+            <div>
+              <h3><a href="https://www.startupgrind.com/blog/fundraising-is-your-competitive-advantage/">Fundraising Is Your Competitive Advantage</a> <span class="ext" aria-label="external link">&#8599;</span></h3>
+              <p>Why the founder who raises best tends to win, on Startup Grind.</p>
+              <p class="post-cat">Startups</p>
+            </div>
+          </li>
+          <li class="post cat-startups">
+            <time datetime="2016">2016</time>
+            <div>
+              <h3><a href="https://www.startupgrind.com/blog/the-special-forces-survival-guide-to-founding-a-startup/">The Special Forces Survival Guide to Founding a Startup</a> <span class="ext" aria-label="external link">&#8599;</span></h3>
+              <p>What a military survival manual has to say about starting a company, on Startup Grind.</p>
+              <p class="post-cat">Startups</p>
+            </div>
+          </li>
+          <li class="post cat-startups">
+            <time datetime="2016">2016</time>
+            <div>
+              <h3><a href="https://www.amazon.com/Science-Growth-Facebook-Friendster-Startups/dp/1250074290">The Science of Growth</a> <span class="ext" aria-label="external link">&#8599;</span></h3>
+              <p>The book the Friendster piece introduces: how Facebook beat Friendster, and how nine other startups left the rest in the dust.</p>
+              <p class="post-cat">Startups</p>
+            </div>
+          </li>
         </ul>
       </section>
     </article>

@@ -607,3 +607,136 @@ figure img.portrait {
 article img {
     height: auto;
 }
+
+/* ---- Blog index (Meanderings & Digressions) ---- */
+.post-crumb {
+    font-size: 1rem;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    margin: 0 0 -2.5rem;
+    padding-top: 1.5rem;
+}
+
+.post-crumb a:link, .post-crumb a:visited {
+    color: var(--ink-soft);
+    background: none;
+    text-shadow: none;
+}
+
+.cat-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cat-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    width: 55%;
+    padding: 0.2rem 0 0.9rem;
+    border-bottom: 1px solid var(--ink);
+}
+
+.cat-filter label {
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding-bottom: 1px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease;
+}
+
+.cat-filter label:hover { color: var(--blaze); }
+
+.cat-filter .cat-n {
+    font-variant: normal;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    font-variant-numeric: lining-nums;
+}
+
+#cat-all:checked ~ .cat-filter label[for="cat-all"],
+#cat-data:checked ~ .cat-filter label[for="cat-data"],
+#cat-startups:checked ~ .cat-filter label[for="cat-startups"],
+#cat-school:checked ~ .cat-filter label[for="cat-school"] {
+    color: var(--ink);
+    border-bottom-color: var(--blaze);
+}
+
+.cat-radio:focus-visible ~ .cat-filter { outline: 2px solid var(--blaze); outline-offset: 4px; }
+
+#cat-data:checked ~ .post-list .post:not(.cat-data),
+#cat-startups:checked ~ .post-list .post:not(.cat-startups),
+#cat-school:checked ~ .post-list .post:not(.cat-school) {
+    display: none;
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 55%;
+}
+
+.post-list .post {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0 1.5rem;
+    align-items: baseline;
+    padding: 1.3rem 0 1.4rem;
+    margin: 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.post-list time {
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    font-size: 1.05rem;
+    color: var(--ink-faint);
+    font-variant-numeric: oldstyle-nums;
+}
+
+.post-list h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.55rem;
+    line-height: 1.25;
+    width: auto;
+}
+
+.post-list .ext {
+    font-style: normal;
+    color: var(--blaze);
+    font-size: 1.1rem;
+}
+
+.post-list p {
+    width: auto;
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #444;
+    padding-right: 0;
+}
+
+.post-list .post-cat {
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--blaze-deep);
+}
+
+@media (max-width: 760px) {
+    .cat-filter, .post-list { width: 100%; }
+    .post-list .post { grid-template-columns: 1fr; }
+    .post-list time { margin-bottom: 0.2rem; }
+    .post-crumb { margin-bottom: -1.5rem; }
+}
