@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Paintings With Legends - Peter Schoffelen</title>
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <link rel="stylesheet" href="site.css?v=4"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Six numbers about how the world has changed in two centuries, painted after Rothko, Steven Alexander and Mondrian, then labeled. On what separates a chart from an abstract painting.">
+    <style>
+      figure.legends { clear: both; margin-top: 2rem; margin-bottom: 2.4rem; }
+      figure.legends figcaption { float: none; max-width: 61%; margin: 0.8rem 0 0; font-size: 1.1rem; line-height: 1.5; color: #555; }
+      figure.legends.solo figcaption { max-width: 100%; }
+      figure.legends figcaption i { color: #111; }
+      figure.legends.solo .plate { width: 62%; }
+      figure.legends.solo.thumb .plate { width: 240px; max-width: 100%; }
+      .legends .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: end; }
+      .legends .pair.top { align-items: start; }
+      .legends .study { container-type: inline-size; min-width: 0; }
+      .legends .tag { font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif; font-size: 0.85rem; letter-spacing: 0.09em; text-transform: uppercase; color: #777; margin-bottom: 0.45rem; }
+      .legends .heads { display: grid; font-style: italic; font-size: clamp(11px, 3.3cqw, 18px); line-height: 1.15; text-align: center; margin-bottom: 0.4rem; }
+      .legends .heads.c3 { grid-template-columns: repeat(3, 1fr); }
+      .legends .heads.c2 { grid-template-columns: repeat(2, 1fr); }
+      .legends .plate { position: relative; }
+      .legends .plate img, .legends .plate > svg.art { display: block; width: 100%; height: auto; }
+      .legends .plate a:link, .legends .plate a:visited { display: block; background: none; text-shadow: none; }
+      .legends .plate svg.ov { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .legends .plate svg.ov rect { fill: none; stroke: #fff; stroke-width: 1; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; opacity: 0.85; }
+      .legends .lab { position: absolute; transform: translate(-50%, -50%); text-align: center; white-space: nowrap; font-family: "Gill Sans", "Gill Sans MT", Calibri, "Helvetica Neue", sans-serif; font-size: clamp(8.5px, 2.7cqw, 14px); line-height: 1.15; font-variant-numeric: tabular-nums; }
+      .legends .lab b { display: block; font-weight: 600; font-size: 1.9em; line-height: 1; }
+      .legends .lab.l { transform: translate(0, -50%); text-align: left; }
+      .legends .lab.r { transform: translate(-100%, -50%); text-align: right; }
+      .legends .w { color: #fff; text-shadow: 0 0 6px rgba(0, 0, 0, 0.45); }
+      .legends .k { color: #17121c; }
+      table.legends-t { border-collapse: collapse; font-size: 1.2rem; margin: 1.6rem 0 2rem; font-variant-numeric: tabular-nums lining-nums; }
+      table.legends-t th, table.legends-t td { text-align: right; padding: 0.28rem 0 0.28rem 0.8rem; font-weight: 400; }
+      table.legends-t th:first-child, table.legends-t td:first-child { text-align: left; padding-left: 0; }
+      table.legends-t thead th { font-style: italic; color: #555; border-bottom: 1px solid #111; }
+      table.legends-t tbody td { border-bottom: 1px solid #e8e2d6; }
+      table.legends-t caption { caption-side: bottom; text-align: left; font-size: 1rem; font-style: italic; color: #555; padding-top: 0.5rem; }
+      p.legends-end { font-size: 1rem; color: #888; font-style: italic; }
+      @media (max-width: 760px) {
+        .legends .pair { grid-template-columns: 1fr; gap: 1.4rem; }
+        figure.legends figcaption { max-width: 100%; }
+        figure.legends.solo .plate { width: 100%; }
+        table.legends-t { font-size: 1rem; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html" class="nav-home">Peter Schoffelen</a></li>
+        <li><a href="about me.html">About Me</a></li>
+        <li><a href="MEANDERINGS AND DIGRESSIONS.html" class="active">Meanderings &amp; Digressions</a></li>
+        <li><a href="travel.html">Travels</a></li>
+        <li><a href="Say Hello.html">Say Hello</a></li>
+      </ul>
+    </nav>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="mond">
+<rect width="908" height="776" fill="#111111"/>
+<rect x="14" y="14" width="346" height="240" fill="#D62B1F"/><rect x="374" y="14" width="73" height="240" fill="#F7F4EC"/>
+<rect x="461" y="14" width="39" height="240" fill="#D62B1F"/><rect x="514" y="14" width="380" height="240" fill="#F7F4EC"/>
+<rect x="14" y="268" width="233" height="240" fill="#F7F4EC"/><rect x="261" y="268" width="186" height="240" fill="#1D3F94"/>
+<rect x="461" y="268" width="400" height="240" fill="#F7F4EC"/><rect x="875" y="268" width="19" height="240" fill="#1D3F94"/>
+<rect x="14" y="522" width="52" height="240" fill="#F2C80F"/><rect x="80" y="522" width="367" height="240" fill="#F7F4EC"/>
+<rect x="461" y="522" width="377" height="240" fill="#F2C80F"/><rect x="852" y="522" width="42" height="240" fill="#F7F4EC"/>
+</g></defs></svg>
+
+    <article>
+      <p class="post-crumb"><a href="MEANDERINGS AND DIGRESSIONS.html">Meanderings &amp; Digressions</a> &middot; Data stories &middot; November 2026</p>
+      <h1>Paintings With Legends</h1>
+      <p class="subtitle">Six numbers, three abstract painters, and what a label does to a picture</p>
+
+      <section>
+<p><span class="newthought">I saw Steven Alexander's paintings</span> in a gallery and enjoyed them. They are big blocks of saturated color fitted against each other, with no subject to decode. I kept thinking about them afterward.</p>
+
+<p>I had also been thinking about how gloomy people are about the state of the world. Some of that is earned, and there is room for improvement on nearly every front. But step back two centuries and the picture changes. By the basic measures of how people live, this is one of the best periods in human existence.</p>
+
+<p>The two thoughts met. What if the proportions in a painting like Alexander's were the numbers?</p>
+
+<p>So I gave Claude six numbers and asked for paintings. The numbers describe how people live: the share of the world in extreme poverty, the share of children who die before age five, and the share of adults who can read. Each is measured twice, about two centuries apart.<label for="sn-legends-1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-legends-1" class="margin-toggle"/><span class="sidenote">Global estimates from <a href="https://ourworldindata.org">Our World in Data</a>. Extreme poverty: about 80% in 1820, under 10% in 2019. Dying before age five: about 43% around 1800, 4.3% in 2015. Adult literacy: 12% in 1820, 87% in 2023.</span></p>
+
+<p>I wanted paintings because a chart and an abstract painting are built from the same parts. Both are rectangles, color, position and proportion. The chart ships with a legend. The painting doesn't.</p>
+
+<p>So what happens if you make the painting first and add the legend second? Each study below appears twice: once bare, the way it would hang on a wall, and once with its labels.<label for="sn-legends-2" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-legends-2" class="margin-toggle"/><span class="sidenote">These are studies in the manner of each painter, made for this post. None reproduces an actual work. The Rothko and Alexander studies are generated images. The Mondrian was drawn in code.</span></p>
+      </section>
+
+      <section>
+<h2>Rothko: the share as a glow</h2>
+
+<p>Rothko said he was interested only in expressing basic human emotions: tragedy, ecstasy, doom. Look at the left picture with that in mind. Three columns, each holding soft rectangles that seem lit from behind. You feel something. You couldn't say what.</p>
+
+<p>First, a real one for comparison.</p>
+
+<figure class="legends solo thumb">
+<div class="plate"><a href="https://www.moma.org/collection/works/79687"><img src="img/web/legends/rothko-no3-no13.jpg" alt="Mark Rothko's No. 3/No. 13: soft horizontal bands of magenta, black and green stacked on an orange ground."></a></div>
+<figcaption>Mark Rothko, <a href="https://www.moma.org/collection/works/79687"><i>No. 3/No. 13</i></a>, 1949. The Museum of Modern Art, New York. © Kate Rothko Prizel &amp; Christopher Rothko / Artists Rights Society (ARS), New York. Low-resolution reproduction shown for commentary.</figcaption>
+</figure>
+
+<p>His bands stack in one column and float on the ground color. The study below borrows that and repeats it three times.</p>
+
+<figure class="fullwidth legends">
+<div class="pair">
+  <div class="study"><div class="tag">Unlabeled</div>
+    <div class="plate"><img src="img/web/legends/rothko.jpg" alt="Three vertical panels in red, purple and orange, each holding two soft-edged rectangles with a denser band inside."></div></div>
+  <div class="study"><div class="tag">Labeled</div>
+    <div class="heads c3"><span>Extreme poverty</span><span>Dying before age 5</span><span>Able to read</span></div>
+    <div class="plate"><img src="img/web/legends/rothko.jpg" alt="The same painting with labels. Extreme poverty: 80 percent in 1820, under 10 percent in 2019. Dying before age five: 43 percent around 1800, 4.3 percent in 2015. Able to read: 12 percent in 1820, 87 percent in 2023.">
+      <svg class="ov" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><rect x="1.4" y="1.6" width="30.4" height="44.6"/><rect x="1.4" y="47.4" width="30.4" height="51.2"/></svg>
+      <span class="lab w" style="left:16.3%;top:7%">all people, 1820</span>
+      <span class="lab w" style="left:16.3%;top:28.4%"><b>80%</b></span>
+      <span class="lab w" style="left:16.3%;top:51%">all people, 2019</span>
+      <span class="lab w" style="left:16.3%;top:85%"><b>under 10%</b></span>
+      <span class="lab w" style="left:50.4%;top:7%">c. 1800</span>
+      <span class="lab k" style="left:50.4%;top:36%"><b>43%</b></span>
+      <span class="lab w" style="left:50.4%;top:51%">2015</span>
+      <span class="lab w" style="left:50.4%;top:85.6%"><b>4.3%</b></span>
+      <span class="lab w" style="left:84.1%;top:7%">1820</span>
+      <span class="lab k" style="left:84.1%;top:42%"><b>12%</b></span>
+      <span class="lab w" style="left:84.1%;top:49.2%">2023</span>
+      <span class="lab k" style="left:84.1%;top:73.6%"><b>87%</b></span>
+    </div></div>
+</div>
+<figcaption><i>After Rothko.</i> Each column is one measure. The upper field is everyone alive two centuries ago and the lower field is everyone alive now. The dense band inside a field is the share of people the measure describes. The dashed outlines mark the two fields in the first column.</figcaption>
+</figure>
+
+<p>Now the right picture. The dark band that fills most of the upper red field is four out of five people in 1820, living in extreme poverty. The thin strip at the bottom of the lower field is the same group in 2019.</p>
+
+<p>The labels don't drain the painting. The soft edges that read as mood in the first picture read as uncertainty in the second.</p>
+      </section>
+
+      <section>
+<h2>Steven Alexander: the shape of a change</h2>
+
+<p>This is the painter who started the exercise. Alexander builds canvases out of interlocking blocks of saturated color. The edges are firmer than Rothko's, and the shapes lock into each other like joinery.<label for="sn-legends-3" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-legends-3" class="margin-toggle"/><span class="sidenote">More of his paintings are at <a href="https://davidrichardgallery.com/artist/632-steven-alexander">David Richard Gallery</a> and on his <a href="https://americanabstractartists.org/steven-alexander/">American Abstract Artists</a> page.</span></p>
+
+<figure class="legends solo thumb">
+<div class="plate"><a href="https://americanabstractartists.org/steven-alexander/"><img src="img/web/legends/alexander-reflector-35.jpg" alt="Steven Alexander's Reflector 35: a pale blue-grey upright block and a deep magenta block on a red ground, with an ochre L shape along the right and bottom edges."></a></div>
+<figcaption>Steven Alexander, <a href="https://americanabstractartists.org/steven-alexander/"><i>Reflector 35</i></a>, 2024. Oil on canvas, 72 × 60 inches. © Steven Alexander. Image via American Abstract Artists. Low-resolution reproduction shown for commentary.</figcaption>
+</figure>
+
+<figure class="fullwidth legends">
+<div class="pair">
+  <div class="study"><div class="tag">Unlabeled</div>
+    <div class="plate"><img src="img/web/legends/alexander.jpg" alt="Three vertical panels. A blue L shape on yellow, a dark red L shape on coral, and a pale yellow reversed L shape on teal."></div></div>
+  <div class="study"><div class="tag">Labeled</div>
+    <div class="heads c3"><span>Extreme poverty</span><span>Dying before age 5</span><span>Able to read</span></div>
+    <div class="plate"><img src="img/web/legends/alexander.jpg" alt="The same painting with labels. In each panel the left half is two centuries ago and the right half is today. Extreme poverty 80 percent then under 10 percent. Dying before age five 43 percent then 4.3 percent. Able to read 12 percent then 87 percent.">
+      <span class="lab k" style="left:9.6%;top:6.5%">1820</span>
+      <span class="lab k" style="left:25.6%;top:6.5%">2019</span>
+      <span class="lab w" style="left:9.6%;top:50%"><b>80%</b></span>
+      <span class="lab w" style="left:25.6%;top:89.7%"><b>&lt;10%</b></span>
+      <span class="lab k" style="left:41.8%;top:6.5%">c. 1800</span>
+      <span class="lab k" style="left:58.3%;top:6.5%">2015</span>
+      <span class="lab w" style="left:41.8%;top:74%"><b>43%</b></span>
+      <span class="lab w" style="left:58.3%;top:93%"><b>4.3%</b></span>
+      <span class="lab w" style="left:74.9%;top:6.5%">1820</span>
+      <span class="lab w" style="left:91%;top:6.5%">2023</span>
+      <span class="lab k" style="left:74.9%;top:88.4%"><b>12%</b></span>
+      <span class="lab k" style="left:91%;top:55.8%"><b>87%</b></span>
+    </div></div>
+</div>
+<figcaption><i>After Steven Alexander.</i> Each panel is one measure, split down the middle. The left half is then and the right half is now. The inner shape rises from the floor to the share of people. The full height of the panel is everyone.</figcaption>
+</figure>
+
+<p>Here the encoding changes what you see. A tall column next to a low one draws the letter L, so a decline makes an L and a rise makes its mirror image. Two of the three panels are Ls and the third is reversed. The asymmetry of the composition is the finding: two bad things fell and one good thing rose.</p>
+
+<p>Then I checked the paintings against the numbers. Tufte's first rule is that the picture must not lie about the data, and he gave the offense a measurement: the lie factor, the size of the effect in the graphic divided by the size of the effect in the data.</p>
+
+<table class="legends-t">
+<thead><tr><th>Then → now, %</th><th>Data</th><th>Rothko</th><th>Alexander</th><th>Mondrian</th></tr></thead>
+<tbody>
+<tr><td>Extreme poverty</td><td>80 → &lt;10</td><td>79 → 11</td><td>82 → 20</td><td>80 → 9</td></tr>
+<tr><td>Dying before age 5</td><td>43 → 4.3</td><td>45 → 10</td><td>52 → 14</td><td>43 → 4</td></tr>
+<tr><td>Able to read</td><td>12 → 87</td><td>17 → 83</td><td>23 → 88</td><td>12 → 87</td></tr>
+</tbody>
+<caption>Painted values are my pixel measurements of each shape against its field, rounded.</caption>
+</table>
+
+<p>The Alexander study paints every small number too large. Child mortality today stands at 14% of the panel where the data says 4.3%. Every change in the picture is smaller than the change in the world.<label for="sn-legends-4" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-legends-4" class="margin-toggle"/><span class="sidenote">For child mortality the data falls 90% and the painted shape falls 73%, a lie factor of about 0.8. For literacy it is about 0.45. Tufte's examples usually exaggerate. This one understates.</span> I'd hypothesize that an image generator cares more about a balanced composition than a faithful sliver, and a 4% foot makes a weak L. The labels in the figure carry the true values.</p>
+      </section>
+
+      <section>
+<h2>Mondrian: the chart that was already there</h2>
+
+<p>Mondrian reduced painting to black lines, right angles, white ground and three primary colors. That is also a fair description of a disciplined bar chart.</p>
+
+<figure class="legends solo">
+<div class="plate"><img src="img/web/legends/mondrian-1930.jpg" alt="Piet Mondrian's 1930 painting: a large red square at upper right, a small blue rectangle at lower left and a small yellow one at lower right, divided by black lines on white."></div>
+<figcaption>Piet Mondrian, <i>Composition with Red, Blue, and Yellow</i>, 1930. Kunsthaus Zürich. Public domain, via <a href="https://commons.wikimedia.org/wiki/File:Piet_Mondriaan,_1930_-_Mondrian_Composition_II_in_Red,_Blue,_and_Yellow.jpg">Wikimedia Commons</a>.</figcaption>
+</figure>
+
+<p>The real painting is lopsided on purpose. One red square takes most of the canvas, and the blue and yellow are pushed to the corners. Mondrian balanced it by eye. My version below keeps his vocabulary and gives the balancing to the data.</p>
+
+<figure class="fullwidth legends">
+<div class="pair">
+  <div class="study"><div class="tag">Unlabeled</div>
+    <div class="plate"><svg class="art" viewBox="0 0 908 776" role="img" aria-label="A grid of six white cells divided by heavy black lines, with red, blue and yellow blocks of different widths."><use href="#mond"/></svg></div></div>
+  <div class="study"><div class="tag">Labeled</div>
+    <div class="heads c2"><span>Two centuries ago</span><span>Latest</span></div>
+    <div class="plate"><svg class="art" viewBox="0 0 908 776" role="img" aria-label="The same grid with labels. Top row, extreme poverty: 80 percent in 1820, under 10 percent in 2019. Middle row, dying before age five: 43 percent around 1800, 4.3 percent in 2015. Bottom row, able to read: 12 percent in 1820, 87 percent in 2023."><use href="#mond"/></svg>
+      <span class="lab w" style="left:20.6%;top:17.3%"><b>80%</b>1820</span>
+      <span class="lab k l" style="left:58.2%;top:17.3%"><b>under 10%</b>extreme poverty, 2019</span>
+      <span class="lab w" style="left:39%;top:50%"><b>43%</b>c. 1800</span>
+      <span class="lab k r" style="left:93.6%;top:50%"><b>4.3%</b>dying before age 5, 2015</span>
+      <span class="lab k l" style="left:10.2%;top:82.7%"><b>12%</b>1820</span>
+      <span class="lab k" style="left:71.6%;top:82.7%"><b>87%</b>able to read, 2023</span>
+    </div></div>
+</div>
+<figcaption><i>After Mondrian.</i> Each row is one measure, with then on the left and now on the right. Each cell is the whole world and the colored block is the share. Block widths are drawn to scale.</figcaption>
+</figure>
+
+<p>This one was drawn in code, and the table above shows the difference. Its widths match the data to the pixel. Every colored mark is a number and every black line is the grid, which is close to what Tufte meant by spending ink only on data.</p>
+
+<p>Unlabeled, it is the most accurate chart of the three and nobody would guess it was a chart. That says something about how little separates the two genres.</p>
+      </section>
+
+      <section>
+<h2>What the labels did</h2>
+
+<p>Count the words in the labeled versions. Three measure names, a handful of years and six percentages turn a painting into a statistical graphic. Remove them and it turns back.</p>
+
+<p>Tufte defined graphical excellence as giving the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space. The labeled Rothko is not that. A two-row table does the job in less ink. What the painting buys is the first look, the few seconds when you're drawn to an image before you know what it's for.<label for="sn-legends-5" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-legends-5" class="margin-toggle"/><span class="sidenote">The definition is from <i>The Visual Display of Quantitative Information</i>, as is the lie factor.</span></p>
+
+<p>That order may matter more than the picture. Seeing the bare version first means you've already formed a feeling about the big dark band before you learn it stands for people. My guess is that a number met this way is held a little longer than the same number in a table. I haven't tested it.</p>
+      </section>
+
+      <section>
+<h2>Two that stayed charts</h2>
+
+<p>Six numbers suit a painting. What about three hundred? I tried the same idea on Gapminder's country data: income and life expectancy for 142 countries in 1952 and again in 2007.</p>
+
+<figure class="fullwidth legends">
+<div class="pair top">
+  <div class="study"><div class="tag">Scatter plot</div>
+    <div class="plate"><img src="img/web/legends/dots.svg" alt="Scatter of 142 countries on an orange field. Dark teal strokes mark 1952 and pale yellow strokes mark 2007. The pale cloud sits higher and further right.">
+      <span class="lab k l" style="left:2.5%;top:4%">↑ longer life</span>
+      <span class="lab k r" style="left:97.5%;top:96.5%">higher income →</span>
+      <span class="lab k l" style="left:2.5%;top:54%">1952, dark</span>
+      <span class="lab k r" style="left:97.5%;top:36%">2007, pale</span>
+    </div></div>
+  <div class="study"><div class="tag">Line chart</div>
+    <div class="plate"><img src="img/web/legends/circles.svg" alt="142 countries as colored circles at their 2007 position, each with a thin line running back to its 1952 position. Nearly every line runs upward.">
+      <span class="lab k l" style="left:2.5%;top:4%">↑ longer life</span>
+      <span class="lab k r" style="left:97.5%;top:96.5%">higher income →</span>
+    </div></div>
+</div>
+<figcaption><i>Left:</i> every country painted twice, with stroke size for population and each stroke tilted along the path its country took. <i>Right:</i> a circle for each country in 2007 and a line back to where it stood in 1952. Red is Africa, yellow the Americas, blue Asia, teal Europe, black Oceania. Income runs from about $280 to $108,000 per person on a log scale and life expectancy from 28 to 83 years. Gapminder data.</figcaption>
+</figure>
+
+<p>The scatter almost explains itself. A pale cloud sits up and to the right of a dark one, and you read "everything moved" before reading anything else. Median life expectancy rose from 45 to 72 years, and it rose in 140 of 142 countries.</p>
+
+<p>The second study replaces the two clouds with lines, which is where a line chart comes from: connect a thing to its earlier self. With circles and ruled lines it leans toward Kandinsky's geometry. It also carries more information than anything else on this page, because you can follow a single country.</p>
+
+<p>Neither one fools you the way the first three do. With 142 marks, position does all the work and the picture can't hide that it is a plot. Abstract painting runs on a few large shapes, so it has room for a few large numbers. Past that, the data starts making the composition and the painter is out of a job.</p>
+      </section>
+
+      <section>
+<h2>Back to the dark band</h2>
+
+<p>Rothko wanted tragedy, ecstasy and doom from rectangles. The dark band in the top left of the first picture is four in five people alive in 1820. The label didn't add the feeling. It told you where the feeling was coming from.</p>
+
+<p>None of this says the work is finished. Close to one person in ten still lives in extreme poverty, and one adult in eight can't read. It says the distance already covered is large. You step back from a big painting to see it whole, and the same move works on two centuries.</p>
+
+<p class="legends-end">Studies made with Claude. Data from Our World in Data and Gapminder.</p>
+      </section>
+    </article>
+
+    <footer class="site-footer">
+      <p>&copy; Peter W. Schoffelen &middot; Made in Dallas, supervised by Charlie Brown <span class="paw" aria-hidden="true">&#128062;</span></p>
+    </footer>
+  </body>
+</html>
