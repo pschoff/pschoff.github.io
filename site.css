@@ -740,3 +740,59 @@ article img {
     .post-list time { margin-bottom: 0.2rem; }
     .post-crumb { margin-bottom: -1.5rem; }
 }
+
+/* ---- About page: career timeline ---- */
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 1.4rem 0 0;
+    width: 55%;
+}
+
+.timeline li {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0 1.5rem;
+    align-items: baseline;
+    padding: 0.95rem 0 1.05rem;
+    margin: 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.timeline li:first-child { border-top: 1px solid var(--rule); }
+
+.timeline .tl-when {
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    font-size: 1.05rem;
+    color: var(--ink-faint);
+    font-variant-numeric: oldstyle-nums;
+    white-space: nowrap;
+}
+
+.timeline .tl-role {
+    display: block;
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.timeline .tl-org {
+    font-style: italic;
+    color: var(--ink-soft);
+}
+
+.timeline p {
+    width: auto;
+    margin: 0.3rem 0 0;
+    padding-right: 0;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+@media (max-width: 760px) {
+    .timeline { width: 100%; }
+    .timeline li { grid-template-columns: 1fr; }
+    .timeline .tl-when { margin-bottom: 0.15rem; }
+}
